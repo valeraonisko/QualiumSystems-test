@@ -1,3 +1,12 @@
+html {
+  background-color: #C0C0C0;
+}
+
+.center {
+  margin-left: 25%;
+
+}
+
 button {
   margin: 50px 50px 50px 0px;
   background-color: blue;
@@ -6,11 +15,13 @@ button {
   font-size: 14px;
   width: 200px;
   height: 50px;
+  border: color blue;
   border-radius: 5px;
 }
 
 .stop {
   background-color: red;
+  border: color red;
 }
 
 span {
