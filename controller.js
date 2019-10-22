@@ -23,13 +23,7 @@ class Controller {
   }
 
   addRandomRect() {
-    const rect = {
-      x: randomPos(0, this.canvas.boardWidth - rectWidth),
-      y: randomPos(0, Math.round(this.canvas.boardHeight/2)),
-      vy: randomPos(1, 3),
-      w: rectWidth,
-      color: randomColor()
-    }
+    const rect = new Square(rectWidth, this.canvas.boardWidth, this.canvas.boardHeight)
     this.rects.push(rect);
   }
 
@@ -64,10 +58,9 @@ class Controller {
     const oldScore = this.score;
     const newRects = [];
     this.rects.forEach(rect => {
-      if ((rect.x <= x) && (rect.x + rect.w >= x) &&
-           (rect.y <= y) && (rect.y + rect.w >= y)) {
-              this.score++;
-              this.canvas.hideRect(rect);
+      if (rect.isHit(x,y)) {
+        this.score++;
+        this.canvas.hideRect(rect);
       } else {
         newRects.push(rect);
       };
