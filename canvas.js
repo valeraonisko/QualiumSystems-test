@@ -1,3 +1,22 @@
+class Square {
+  constructor(rectWidth, boardWidth, boardHeight) {
+    this.x = randomPos(0, boardWidth - rectWidth);
+    this.y = randomPos(0, Math.round(boardHeight/3));
+    this.vy = randomPos(1, 3);
+    this.w = rectWidth;
+    this.color =  randomColor();
+  }
+
+  move() {
+    this.y += this.vy;
+  }
+
+  isHit(x, y) {
+    return ((this.x <= x) && (this.x + this.w >= x) &&
+         (this.y <= y) && (this.y + this.w >= y)); 
+  }
+}
+
 class Canvas {
   constructor () {
     this.link = document.getElementById('canvas');
@@ -20,7 +39,7 @@ class Canvas {
 
   updateRect(rect) {
     this.hideRect(rect);
-    rect.y += rect.vy;
+    rect.move();
     this.drawRect(rect);
     return rect;
   }
